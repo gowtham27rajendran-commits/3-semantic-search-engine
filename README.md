@@ -58,7 +58,13 @@ GET  /health
 - [ ] Incremental index updates without full rebuild
 - [ ] Query caching: identical queries hit Redis before FAISS
 
-## Interview Talking Points
+## Production Challenges
+
+- Embedding drift requires full re-indexing when models change
+- ANN introduces recall/latency tradeoffs
+- Large IVF indexes require retraining to maintain cluster quality
+- Hot queries benefit from Redis caching
+- Distributed vector search requires shard routing and replica consistency
 
 **"Why FAISS over exact nearest-neighbor search?"**
 Exact search is O(N×D) — for 10M docs at 384 dims, that's billions of operations per query. FAISS IVF partitions the space into clusters, searching only relevant ones. 100x faster with <5% accuracy loss.
