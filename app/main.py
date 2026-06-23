@@ -4,6 +4,7 @@ from uuid import uuid4
 import logging
 import time
 
+
 import numpy as np
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
